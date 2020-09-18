@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class CategoriesController extends Controller
 {
@@ -13,7 +15,9 @@ class CategoriesController extends Controller
      */
     public function index()
     {
-        return view('seller.category.index');
+        return view('seller.category.index', [
+            'categories' => Category::latest()->get()
+        ]);
     }
 
     /**
@@ -34,7 +38,20 @@ class CategoriesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'name' => 'required|unique:categories|max:255',
+        ]);
+
+        if (!$validatedData) return redirect()->back()->withErrors($validatedData)->withInput();
+
+        $category = Category::create([
+            'name' => $validatedData['name'],
+            'slug' => Str::slug($validatedData['name'])
+        ]);
+
+        if (!$category) return redirect()->route('categories.index')->withErrors('Kategori gagal ditambahkan!');
+
+        return redirect()->route('categories.index')->with('success', 'Kategori <strong>' . $category->name . '</strong> berhasil ditambahkan!');
     }
 
     /**
@@ -79,6 +96,12 @@ class CategoriesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $category = Category::find($id);
+
+        $category->delete();
+
+        if (!$category) return redirect()->route('categories.index')->withErrors('Kategori gagal dihapus!');
+
+        return redirect()->route('categories.index')->with('success', 'Kategori <strong>' . $category->name . '</strong> berhasil dihapus.');
     }
 }

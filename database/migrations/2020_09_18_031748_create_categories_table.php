@@ -17,10 +17,10 @@ class CreateCategoriesTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('slug');
-            $table->unsignedBigInteger('parent_id');
+            // $table->unsignedBigInteger('parent_id');
             $table->timestamps();
 
-            $table->foreign('parent_id')->references('id')->on('categories');
+            // $table->foreign('parent_id')->references('id')->on('categories');
         });
     }
 

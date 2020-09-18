@@ -21,7 +21,7 @@
                         <x-jet-input class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus />
                     </div>
 
-                    <div class="mt-4">
+                    {{-- <div class="mt-4">
                         <x-jet-label value="Parent" />
 
                         <div class="inline-block relative w-full mt-1">
@@ -35,8 +35,8 @@
                                     <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" /></svg>
                             </div>
                         </div>
-                        {{-- <x-jet-input class="block mt-1 w-full" type="password" name="password" required autocomplete="current-password" /> --}}
-                    </div>
+                        <x-jet-input class="block mt-1 w-full" type="password" name="password" required autocomplete="current-password" />
+                    </div> --}}
 
                     <div class="flex items-center justify-end mt-4">
                         <x-jet-button class="ml-4">
