@@ -2,7 +2,7 @@
     <x-slot name="header">
         <div class="flex justify-between items-center">
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                Tambah Kategori
+                {{  @$edit ? 'Edit Kategori': 'Buat Kategori Baru' }}  
             </h2>
             <a href="{{ route('categories.index') }}" class="inline-flex items-center px-4 py-2 bg-gray-300 border border-transparent rounded-md font-semibold text-xs uppercase tracking-widest hover:bg-gray-200 active:bg-gray-400 focus:outline-none focus:border-gray-400 focus:shadow-outline-gray disabled:opacity-25 transition ease-in-out duration-150">
                 Kembali
@@ -13,12 +13,13 @@
     <div class="py-8">
         <div class="max-w-3xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg p-4">
-                <form method="POST" action="{{ route('categories.store') }}">
+                <form method="POST" action="{{ @$edit ? route('categories.update',$category->id) : route('categories.store') }}">
                     @csrf
+                    {{  @$edit ? method_field('PUT') : '' }}
 
                     <div>
                         <x-jet-label value="Nama Kategori" />
-                        <x-jet-input class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus />
+                        <x-jet-input class="block mt-1 w-full" type="text" name="name" :value="@$edit ? $category->name : old('name')" required autofocus />
                     </div>
 
                     {{-- <div class="mt-4">
@@ -40,7 +41,7 @@
 
                     <div class="flex items-center justify-end mt-4">
                         <x-jet-button class="ml-4">
-                            Buat Kategori Baru
+                            {{  @$edit ? 'Edit Kategori': 'Buat Kategori Baru' }}  
                         </x-jet-button>
                     </div>
                 </form>

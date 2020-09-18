@@ -73,7 +73,10 @@ class CategoriesController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('seller.category.form', [
+            'edit' => TRUE,
+            'category' => Category::find($id)
+        ]);
     }
 
     /**
@@ -85,7 +88,20 @@ class CategoriesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validatedData = $request->validate([
+            'name' => 'required|unique:categories|max:255',
+        ]);
+
+        if (!$validatedData) return redirect()->back()->withErrors($validatedData)->withInput();
+
+        $category = Category::find($id);
+
+        $category->name = $validatedData['name'];
+        $category->slug = Str::slug($validatedData['name']);
+
+        if (!$category->save()) return redirect()->route('categories.index')->withErrors('Kategori gagal diubah!');
+
+        return redirect()->route('categories.index')->with('success', 'Kategori <strong>' . $category->name . '</strong> berhasil diubah!');
     }
 
     /**

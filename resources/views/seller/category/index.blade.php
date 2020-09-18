@@ -36,7 +36,7 @@
                                 <td class="border border-gray-200 px-4 py-2">{{ $category->slug }}</td>
                                 <td class="border border-gray-200 px-4 py-2">{{ $category->created_at }} / {{ $category->updated_at }}</td>
                                 <td class="border border-gray-200 px-4 py-2">
-                                    <a class="inline-flex items-center px-2 py-1 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray disabled:opacity-25 transition ease-in-out duration-150" href="{{ route('categories.create') }}">
+                                    <a class="inline-flex items-center px-2 py-1 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray disabled:opacity-25 transition ease-in-out duration-150" href="{{ route('categories.edit', $category->id) }}">
                                         Edit
                                     </a>
                                     <button onclick="document.getElementById('formDelete').submit()" class="btnDelete ml-2 inline-flex items-center px-2 py-1 bg-gray-300 border border-transparent rounded-md font-semibold text-xs uppercase tracking-widest hover:bg-gray-200 active:bg-gray-400 focus:outline-none focus:border-gray-400 focus:shadow-outline-gray disabled:opacity-25 transition ease-in-out duration-150">
