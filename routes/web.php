@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\TransactionsController;
 use Illuminate\Support\Facades\Route;
 
@@ -23,7 +24,8 @@ Route::get('/', function () {
 // })->name('dashboard');
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
-    Route::get('/transactions', [TransactionsController::class, 'index']);
+    Route::resource('/transactions', TransactionsController::class);
+    Route::resource('/categories', CategoriesController::class);
 
     // return view('dashboard');
 });
