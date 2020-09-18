@@ -5,23 +5,20 @@
             <div class="flex">
                 <!-- Logo -->
                 <div class="flex-shrink-0 flex items-center">
-                    <a href="/dashboard">
-                        <x-jet-application-mark class="block h-9 w-auto" />
+                    <a href="/transactions" class="flex items-center tracking-widest no-underline hover:no-underline font-bold text-gray-600 text-xl">
+                        ATALLA
                     </a>
                 </div>
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-jet-nav-link href="/dashboard" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
-                    </x-jet-nav-link>
-                    <x-jet-nav-link href="/transactions" :active="request()->routeIs('transactions')">
-                        Tramsaksi
+                    <x-jet-nav-link href="/transactions" :active="request()->is('transactions')">
+                        Transaksi
                     </x-jet-nav-link>      
-                    <x-jet-nav-link href="/categories" :active="request()->routeIs('categories')">
+                    <x-jet-nav-link href="/categories" :active="request()->is('categories')">
                         Kategori
                     </x-jet-nav-link>                    
-                    <x-jet-nav-link href="/products" :active="request()->routeIs('products')">
+                    <x-jet-nav-link href="/products" :active="request()->is('products')">
                         Produk
                     </x-jet-nav-link>
                 </div>
@@ -114,8 +111,14 @@
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
-            <x-jet-responsive-nav-link href="/dashboard" :active="request()->routeIs('dashboard')">
-                {{ __('Dashboard') }}
+            <x-jet-responsive-nav-link href="/transactions" :active="request()->is('transactions')">
+                {{ __('Transaksi') }}
+            </x-jet-responsive-nav-link>
+            <x-jet-responsive-nav-link href="/categories" :active="request()->is('categories')">
+                {{ __('Kategori') }}
+            </x-jet-responsive-nav-link>
+            <x-jet-responsive-nav-link href="/products" :active="request()->is('products')">
+                {{ __('Produk') }}
             </x-jet-responsive-nav-link>
         </div>
 
